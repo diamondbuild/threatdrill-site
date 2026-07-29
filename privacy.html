@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — ThreatDrill</title>
+  <meta name="description" content="ThreatDrill's privacy policy: what we collect, why, and the choices you have. Short and honest." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <style>
+    :root {
+      --primary: #14605B; --primary-dark: #0F4A46; --primary-tint: #E3EFEC;
+      --ink: #18211F; --muted: #5B6663; --faint: #8A9491;
+      --bg: #F1F4F4; --card: #FFFFFF; --border: #E2E8E6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    nav { padding: 22px 0; }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; letter-spacing: -0.4px; color: var(--ink); text-decoration: none; }
+    .brand svg { width: 28px; height: 28px; }
+    nav a.link { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 14px; }
+    main { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 40px; margin: 24px auto 48px; }
+    h1 { font-size: 30px; font-weight: 800; letter-spacing: -0.7px; margin-bottom: 4px; }
+    .date { color: var(--faint); font-size: 14px; margin-bottom: 28px; }
+    h2 { font-size: 19px; font-weight: 800; letter-spacing: -0.3px; margin: 28px 0 8px; }
+    p, li { font-size: 15px; color: var(--muted); }
+    strong { color: var(--ink); }
+    ul { padding-left: 22px; margin: 8px 0; }
+    li { margin-bottom: 6px; }
+    a { color: var(--primary); }
+    .callout { background: var(--primary-tint); border-radius: 14px; padding: 18px 20px; margin: 16px 0; }
+    .callout li, .callout p { color: var(--primary-dark); }
+    footer { padding: 0 0 56px; text-align: center; color: var(--faint); font-size: 13.5px; }
+    footer a { color: var(--primary); text-decoration: none; font-weight: 600; }
+    @media (max-width: 600px) { main { padding: 28px 22px; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="/">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L3.5 5.5V11C3.5 16.5 7 21 12 22.5C17 21 20.5 16.5 20.5 11V5.5L12 2Z" fill="#14605B"/>
+          <path d="M8.5 12L11 14.5L15.5 9.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        ThreatDrill
+      </a>
+      <a class="link" href="/">← Home</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <main>
+      <h1>Privacy Policy</h1>
+      <p class="date">Effective date: 2 July 2026</p>
+
+      <p>ThreatDrill ("we", "us") is a cybersecurity learning and threat-intelligence app. This policy explains what we collect, why, and the choices you have. We keep it short and honest.</p>
+
+      <div class="callout">
+        <p><strong>The short version</strong></p>
+        <ul>
+          <li>You can use ThreatDrill <strong>without an account</strong> — your progress stays on your device.</li>
+          <li>If you <strong>sign in</strong>, we store your email and learning progress so it can sync across your devices.</li>
+          <li>We <strong>do not sell your data</strong>, and we don't use it for advertising or tracking.</li>
+          <li>You can <strong>export</strong> your data and <strong>permanently delete</strong> your account and all synced data at any time, from inside the app (Profile → Account).</li>
+        </ul>
+      </div>
+
+      <h2>What we collect</h2>
+      <p><strong>Account information (only if you sign in)</strong></p>
+      <ul>
+        <li>Your <strong>email address</strong>, used solely to send a one-time sign-in code and to identify your account.</li>
+      </ul>
+      <p><strong>Learning data</strong></p>
+      <ul>
+        <li>Your progress: lessons completed, knowledge-check results, streaks, earned badges, saved threats, your chosen role, and a display name if you set one.</li>
+        <li>When you're signed in, this is synced to our backend so you can pick up on another device. When you're not signed in, it stays only on your device.</li>
+      </ul>
+      <p><strong>We do NOT collect</strong> your location, contacts, photos, precise device identifiers for tracking, or payment information.</p>
+
+      <h2>How we use your data</h2>
+      <ul>
+        <li>To provide the app's core features (save and sync your learning progress).</li>
+        <li>To authenticate you (the one-time email code).</li>
+        <li>Nothing else. No advertising, no profiling, no sale of data.</li>
+      </ul>
+
+      <h2>Where your data is stored</h2>
+      <ul>
+        <li><strong>On your device</strong>, using local storage (the app is offline-first).</li>
+        <li><strong>In our backend</strong>, if you sign in — hosted on <a href="https://supabase.com" rel="noopener">Supabase</a>. Data is protected in transit (TLS) and by per-user access controls (row-level security) so only you can read your rows.</li>
+      </ul>
+
+      <h2>Third parties</h2>
+      <ul>
+        <li><strong>Supabase</strong> — backend database, authentication, and email delivery for your sign-in code. Supabase processes this data on our behalf.</li>
+        <li><strong>CISA Known Exploited Vulnerabilities feed</strong> — the app shows live public threat data fetched through our own proxy. <strong>No personal data is sent</strong> when fetching threat data.</li>
+      </ul>
+      <p>We do not share your personal data with anyone else.</p>
+
+      <h2>Your rights and choices</h2>
+      <ul>
+        <li><strong>Use without an account</strong> — core features work locally with no email required; cross-device sync and Premium access require signing in.</li>
+        <li><strong>Export your data</strong> — Profile → Account → <em>Export my data</em> produces a copy of your synced data.</li>
+        <li><strong>Delete your account</strong> — Profile → Account → <em>Delete account</em> permanently removes your account and all synced data from our backend, and clears it from your device. This cannot be undone.</li>
+      </ul>
+
+      <h2>Data retention</h2>
+      <p>We keep your synced data until you delete your account, at which point it is removed.</p>
+
+      <h2>Children</h2>
+      <p>ThreatDrill is not directed to children under 13 (or under 16 in the EEA/UK). We do not knowingly collect data from children.</p>
+
+      <h2>Security</h2>
+      <p>We protect data in transit with TLS and restrict access to your rows with per-user database policies. No system is perfectly secure, but we follow reasonable, current practices.</p>
+
+      <h2>A note on badges</h2>
+      <p>ThreatDrill badges and certificates recognize completion of in-app training only. They are <strong>not</strong> professional certifications and imply no accreditation by, or affiliation with, any third party.</p>
+
+      <h2>Changes to this policy</h2>
+      <p>We may update this policy; we'll revise the effective date above and, for material changes, note it in the app.</p>
+
+      <h2>Contact</h2>
+      <p>Questions or requests: <a href="mailto:joey19154@gmail.com">joey19154@gmail.com</a></p>
+    </main>
+  </div>
+
+  <footer>
+    <p>© 2026 ThreatDrill · <a href="/">threatdrill.app</a></p>
+  </footer>
+</body>
+</html>

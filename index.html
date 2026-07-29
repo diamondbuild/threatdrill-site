@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThreatDrill — Train on today's real threats</title>
+  <meta name="description" content="Cybersecurity training built from live threat intelligence. A daily timed drill from the day's real CISA KEV threat, 33 lessons across 7 paths aligned to Security+ objectives, and badges you can add to LinkedIn." />
+  <meta property="og:title" content="ThreatDrill — Train on today's real threats" />
+  <meta property="og:description" content="A daily timed security drill built from the day's real threat. Live CISA KEV intel, 7 learning paths, 1,180 exam-grade questions, LinkedIn-ready badges." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://threatdrill.app" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <style>
+    :root {
+      --primary: #14605B;
+      --primary-dark: #0F4A46;
+      --primary-soft: #2E827B;
+      --primary-tint: #E3EFEC;
+      --critical: #B0463C;
+      --critical-tint: #F8E9E7;
+      --high: #A9742E;
+      --high-tint: #F4EADB;
+      --ink: #18211F;
+      --muted: #5B6663;
+      --faint: #8A9491;
+      --bg: #F1F4F4;
+      --card: #FFFFFF;
+      --border: #E2E8E6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+    /* Nav */
+    nav { padding: 22px 0; }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; letter-spacing: -0.4px; color: var(--ink); text-decoration: none; }
+    .brand svg { width: 28px; height: 28px; }
+    nav a.link { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 14px; }
+    nav a.link:hover { color: var(--primary); }
+    /* Hero */
+    .hero { padding: 64px 0 48px; text-align: center; }
+    .hero h1 {
+      font-size: clamp(34px, 6vw, 54px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      max-width: 720px;
+      margin: 0 auto 18px;
+    }
+    .hero h1 em { font-style: normal; color: var(--primary); }
+    .hero p.sub { font-size: 18px; color: var(--muted); max-width: 640px; margin: 0 auto 28px; }
+    .grid-demo {
+      font-size: 28px; letter-spacing: 6px; margin-bottom: 28px;
+      font-family: 'Space Grotesk', monospace;
+    }
+    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .pill {
+      display: inline-block; padding: 13px 26px; border-radius: 999px;
+      font-weight: 700; font-size: 15px; text-decoration: none;
+    }
+    .pill.primary { background: var(--primary); color: #fff; }
+    .pill.primary:hover { background: var(--primary-dark); }
+    .pill.ghost { background: var(--primary-tint); color: var(--primary-dark); }
+    .coming { margin-top: 14px; font-size: 13px; color: var(--faint); font-weight: 600; }
+    /* Feature cards */
+    section.features { padding: 32px 0 8px; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+      padding: 26px; box-shadow: 0 4px 14px rgba(20, 40, 40, 0.05);
+    }
+    .card .tag {
+      display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 1px;
+      padding: 4px 10px; border-radius: 8px; margin-bottom: 14px;
+      background: var(--primary-tint); color: var(--primary-dark);
+    }
+    .card .tag.red { background: var(--critical-tint); color: var(--critical); }
+    .card .tag.amber { background: var(--high-tint); color: var(--high); }
+    .card h3 { font-size: 18px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 8px; }
+    .card p { font-size: 14.5px; color: var(--muted); }
+    /* Steps */
+    section.how { padding: 56px 0 24px; text-align: center; }
+    section.how h2, section.paths h2 { font-size: 30px; font-weight: 800; letter-spacing: -0.8px; margin-bottom: 8px; }
+    section.how p.lead, section.paths p.lead { color: var(--muted); margin-bottom: 28px; }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; text-align: left; }
+    .step { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 24px; }
+    .step .num {
+      width: 34px; height: 34px; border-radius: 50%; background: var(--primary);
+      color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 12px; font-family: 'Space Grotesk', monospace;
+    }
+    .step h3 { font-size: 16px; font-weight: 800; margin-bottom: 6px; }
+    .step p { font-size: 14px; color: var(--muted); }
+    /* Paths */
+    section.paths { padding: 40px 0 16px; text-align: center; }
+    .path-chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .chip {
+      background: var(--card); border: 1px solid var(--border); border-radius: 999px;
+      padding: 9px 18px; font-size: 14px; font-weight: 700; color: var(--ink);
+    }
+    .stats { display: flex; gap: 36px; justify-content: center; flex-wrap: wrap; margin: 36px 0 8px; }
+    .stat { text-align: center; }
+    .stat .n { font-family: 'Space Grotesk', monospace; font-size: 38px; font-weight: 700; color: var(--primary); }
+    .stat .l { font-size: 13px; color: var(--muted); font-weight: 600; }
+    /* Disclaimer + footer */
+    .fine {
+      max-width: 760px; margin: 48px auto 0; padding: 20px 24px;
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+      font-size: 12.5px; color: var(--faint); text-align: center;
+    }
+    footer { padding: 40px 0 56px; text-align: center; color: var(--faint); font-size: 13.5px; }
+    footer a { color: var(--primary); text-decoration: none; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="/">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L3.5 5.5V11C3.5 16.5 7 21 12 22.5C17 21 20.5 16.5 20.5 11V5.5L12 2Z" fill="#14605B"/>
+          <path d="M8.5 12L11 14.5L15.5 9.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        ThreatDrill
+      </a>
+      <a class="link" href="privacy.html">Privacy</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <h1>Train on <em>today's real threats</em>.</h1>
+      <p class="sub">
+        Every day, CISA catalogs the vulnerabilities attackers are actively exploiting.
+        Every day, ThreatDrill turns the top one into a timed incident-response drill.
+        Sixty seconds a decision. Answers lock. First attempt counts.
+      </p>
+      <div class="grid-demo" aria-hidden="true">🟩🟩🟥🟩🟩</div>
+      <div class="cta-row">
+        <span class="pill primary">Coming soon to the App&nbsp;Store</span>
+        <a class="pill ghost" href="mailto:joey19154@gmail.com?subject=ThreatDrill%20early%20access">Request early access</a>
+      </div>
+      <p class="coming">Now in TestFlight beta for iPhone and iPad.</p>
+    </div>
+  </header>
+
+  <section class="features">
+    <div class="wrap">
+      <div class="cards">
+        <div class="card">
+          <span class="tag red">LIVE</span>
+          <h3>Real threat intelligence, not stale examples</h3>
+          <p>Live CISA Known Exploited Vulnerabilities with real CVSS severity from NVD, plus security headlines from trusted outlets — served through our backend, updated all day.</p>
+        </div>
+        <div class="card">
+          <span class="tag">DAILY DRILL</span>
+          <h3>One scenario a day. Everyone gets the same one.</h3>
+          <p>An incident-response simulation generated from the day's threat. Timed decisions, locked answers, expert rationale — and a spoiler-free result you can share anywhere.</p>
+        </div>
+        <div class="card">
+          <span class="tag amber">LEARN</span>
+          <h3>Seven paths, exam-aligned</h3>
+          <p>33 full-depth lessons with honest alignment to CompTIA Security+ (SY0-701) exam objectives — from fundamentals and networking to cloud, AppSec, governance, and industrial/OT.</p>
+        </div>
+        <div class="card">
+          <span class="tag">PRACTICE</span>
+          <h3>1,180 exam-grade questions</h3>
+          <p>Every lesson has a deep question bank; every path ends in a final assessment. Fresh draws and shuffled options every attempt — you can't memorize your way through.</p>
+        </div>
+        <div class="card">
+          <span class="tag">CAREER</span>
+          <h3>Badges that go on LinkedIn</h3>
+          <p>Complete a path and pass its final to earn a badge and certificate — with one-tap “Add to LinkedIn profile.” Honest wording, always: course completion, not certification.</p>
+        </div>
+        <div class="card">
+          <span class="tag">FREE</span>
+          <h3>The daily drill is free. Forever.</h3>
+          <p>Free tier: the Daily Threat Drill, live threat intel, streaks, and the first lesson of every path. Premium unlocks everything else.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how">
+    <div class="wrap">
+      <h2>How the drill works</h2>
+      <p class="lead">Three minutes a day, pressure included.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>The day's threat arrives</h3>
+          <p>ThreatDrill builds a scenario from the newest actively-exploited vulnerability in CISA's catalog. You're the analyst on duty.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>Five decisions, 60 seconds each</h3>
+          <p>Assess, prioritize, remediate, hunt, close out. Answers lock when you commit — and running out of time is a decision too.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>Score, learn, share</h3>
+          <p>Expert rationale on every choice, a result card built for sharing, and a streak that's waiting for you tomorrow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="paths">
+    <div class="wrap">
+      <h2>The learning paths</h2>
+      <p class="lead">Structured, sequential, and honestly labeled.</p>
+      <div class="path-chips">
+        <span class="chip">Security Fundamentals</span>
+        <span class="chip">SOC Analyst</span>
+        <span class="chip">Network &amp; Infrastructure</span>
+        <span class="chip">Cloud Security</span>
+        <span class="chip">Web &amp; AppSec</span>
+        <span class="chip">Governance &amp; Risk</span>
+        <span class="chip">Industrial / OT</span>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="n">7</div><div class="l">learning paths</div></div>
+        <div class="stat"><div class="n">33</div><div class="l">full-depth lessons</div></div>
+        <div class="stat"><div class="n">1,180</div><div class="l">exam-grade questions</div></div>
+        <div class="stat"><div class="n">1</div><div class="l">new drill, every day</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="fine">
+      ThreatDrill badges and certificates recognize completion of in-app training only — they are not
+      professional certifications and imply no accreditation. Learning paths reference CompTIA Security+
+      (SY0-701) exam objectives as an independent study aid; ThreatDrill is not affiliated with or endorsed
+      by CompTIA. Live threat data is drawn from the CISA Known Exploited Vulnerabilities catalog and the
+      National Vulnerability Database (public data); ThreatDrill is not affiliated with CISA or NIST.
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <p>© 2026 ThreatDrill · <a href="privacy.html">Privacy Policy</a> · <a href="mailto:joey19154@gmail.com">Support</a></p>
+    </div>
+  </footer>
+</body>
+</html>
