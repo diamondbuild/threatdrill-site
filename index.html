@@ -9,6 +9,7 @@
   <meta property="og:description" content="A daily timed security drill built from the day's real threat. Live CISA KEV intel, 7 learning paths, 1,180 exam-grade questions, LinkedIn-ready badges." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://threatdrill.app" />
+  <meta name="apple-itunes-app" content="app-id=6795619164" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
@@ -71,6 +72,17 @@
     .pill.primary:hover { background: var(--primary-dark); }
     .pill.ghost { background: var(--primary-tint); color: var(--primary-dark); }
     .coming { margin-top: 14px; font-size: 13px; color: var(--faint); font-weight: 600; }
+    .appstore {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #000; color: #fff; border-radius: 12px;
+      padding: 9px 18px 9px 14px; text-decoration: none; line-height: 1.1;
+      border: 1px solid #333;
+    }
+    .appstore:hover { background: #1a1a1a; }
+    .appstore svg { width: 26px; height: 26px; flex: none; }
+    .appstore .t { display: flex; flex-direction: column; text-align: left; }
+    .appstore .t small { font-size: 10.5px; font-weight: 600; letter-spacing: 0.2px; opacity: 0.85; }
+    .appstore .t span { font-size: 19px; font-weight: 700; letter-spacing: -0.3px; }
     /* Feature cards */
     section.features { padding: 32px 0 8px; }
     .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
@@ -145,10 +157,15 @@
       </p>
       <div class="grid-demo" aria-hidden="true">🟩🟩🟥🟩🟩</div>
       <div class="cta-row">
-        <span class="pill primary">Coming soon to the App&nbsp;Store</span>
-        <a class="pill ghost" href="mailto:support@threatdrill.app?subject=ThreatDrill%20early%20access">Request early access</a>
+        <a class="appstore" href="https://apps.apple.com/us/app/threatdrill/id6795619164" aria-label="Download ThreatDrill on the App Store">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16.365 12.79c-.024-2.47 2.017-3.66 2.109-3.717-1.15-1.68-2.937-1.91-3.572-1.936-1.522-.154-2.97.896-3.742.896-.77 0-1.962-.874-3.226-.85-1.66.024-3.19.965-4.045 2.452-1.725 2.99-.44 7.42 1.24 9.848.822 1.19 1.8 2.526 3.086 2.478 1.238-.05 1.706-.8 3.203-.8 1.496 0 1.916.8 3.226.776 1.332-.024 2.177-1.212 2.993-2.406.943-1.383 1.332-2.72 1.355-2.79-.03-.012-2.6-.997-2.627-3.95zM13.907 5.53c.68-.826 1.14-1.975 1.015-3.12-.98.04-2.168.653-2.872 1.478-.63.73-1.183 1.9-1.035 3.02 1.094.085 2.21-.556 2.892-1.378z"/>
+          </svg>
+          <span class="t"><small>Download on the</small><span>App Store</span></span>
+        </a>
+        <a class="pill ghost" href="#how">See how the drill works</a>
       </div>
-      <p class="coming">Now in TestFlight beta for iPhone and iPad.</p>
+      <p class="coming">Free on iPhone. The daily drill never costs anything; Premium unlocks every lesson.</p>
     </div>
   </header>
 
@@ -189,7 +206,7 @@
     </div>
   </section>
 
-  <section class="how">
+  <section class="how" id="how">
     <div class="wrap">
       <h2>How the drill works</h2>
       <p class="lead">Three minutes a day, pressure included.</p>
