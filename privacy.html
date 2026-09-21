@@ -8,12 +8,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <meta name="theme-color" content="#0B1412" />
+  <meta name="color-scheme" content="dark" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <style>
     :root {
-      --primary: #14605B; --primary-dark: #0F4A46; --primary-tint: #E3EFEC;
-      --ink: #18211F; --muted: #5B6663; --faint: #8A9491;
-      --bg: #F1F4F4; --card: #FFFFFF; --border: #E2E8E6;
+      --primary: #3BD9B2; --primary-dark: #3BD9B2; --primary-tint: rgba(25, 195, 154, 0.14);
+      --ink: #EAF2F0; --muted: #C9D4D1; --faint: #7C8E8A;
+      --bg: #0B1412; --card: #121D1B; --border: #22352F;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; -webkit-font-smoothing: antialiased; }
@@ -33,7 +35,8 @@
     li { margin-bottom: 6px; }
     a { color: var(--primary); }
     .callout { background: var(--primary-tint); border-radius: 14px; padding: 18px 20px; margin: 16px 0; }
-    .callout li, .callout p { color: var(--primary-dark); }
+    .callout { border: 1px solid #0A4B45; }
+    .callout li, .callout p { color: var(--ink); }
     footer { padding: 0 0 56px; text-align: center; color: var(--faint); font-size: 13.5px; }
     footer a { color: var(--primary); text-decoration: none; font-weight: 600; }
     @media (max-width: 600px) { main { padding: 28px 22px; } }
@@ -44,8 +47,8 @@
     <div class="wrap">
       <a class="brand" href="/">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2L3.5 5.5V11C3.5 16.5 7 21 12 22.5C17 21 20.5 16.5 20.5 11V5.5L12 2Z" fill="#14605B"/>
-          <path d="M8.5 12L11 14.5L15.5 9.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 2L3.5 5.5V11C3.5 16.5 7 21 12 22.5C17 21 20.5 16.5 20.5 11V5.5L12 2Z" fill="#19C39A"/>
+          <path d="M8.5 12L11 14.5L15.5 9.5" stroke="#05211B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         ThreatDrill
       </a>
