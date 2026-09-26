@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verify a certificate — ThreatDrill</title>
+  <meta name="description" content="Check that a ThreatDrill certificate of completion is genuine." />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#0B1412" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <style>
+    :root {
+      --bg: #0B1412; --card: #121D1B; --surface-2: #182825; --border: #22352F; --border-strong: #33504A;
+      --ink: #EAF2F0; --text: #C9D4D1; --muted: #A8B9B5; --faint: #7C8E8A;
+      --brand: #19C39A; --brand-text: #3BD9B2; --brand-tint: rgba(25, 195, 154, 0.14); --brand-deep: #0A4B45; --on-brand: #05211B;
+      --critical: #F2776F; --critical-tint: rgba(242, 119, 111, 0.14);
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      --display: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { background: var(--bg); }
+    body { font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 0 20px; }
+    nav { padding: 22px 0; border-bottom: 1px solid var(--border); }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; letter-spacing: -0.4px; color: var(--ink); text-decoration: none; }
+    .brand svg { width: 28px; height: 28px; }
+    nav a.link { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 14px; }
+    nav a.link:hover { color: var(--brand-text); }
+    main { padding: 44px 0 64px; }
+    .label { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 1.1px; text-transform: uppercase; color: var(--faint); }
+    h1 { font-family: var(--display); font-size: 30px; font-weight: 700; letter-spacing: -0.7px; color: var(--ink); margin: 6px 0 22px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px 26px; }
+    .card.ok { border-color: var(--brand-deep); box-shadow: 0 12px 40px rgba(25, 195, 154, 0.14); }
+    .card.bad { border-color: var(--critical); }
+    .status { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 5px 10px; border-radius: 6px; }
+    .status.ok { background: var(--brand-tint); color: var(--brand-text); }
+    .status.bad { background: var(--critical-tint); color: var(--critical); }
+    .status svg { width: 14px; height: 14px; }
+    .who { margin-top: 18px; font-size: 14px; color: var(--muted); }
+    .name { font-size: 26px; font-weight: 800; color: var(--ink); letter-spacing: -0.4px; margin-top: 2px; }
+    .path { font-size: 18px; font-weight: 700; color: var(--brand-text); margin-top: 14px; }
+    .date { margin-top: 12px; font-size: 14px; color: var(--muted); }
+    .code { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border); font-family: var(--mono); font-size: 12px; color: var(--faint); letter-spacing: 0.4px; }
+    .code b { color: var(--text); font-weight: 600; }
+    .bad p { margin-top: 12px; color: var(--muted); font-size: 15px; }
+    .bad p + p { margin-top: 8px; }
+    form { display: flex; gap: 8px; margin-top: 18px; flex-wrap: wrap; }
+    input { flex: 1 1 200px; font-family: var(--mono); font-size: 15px; letter-spacing: 1.5px; text-transform: uppercase; background: var(--surface-2); color: var(--ink); border: 1px solid var(--border-strong); border-radius: 10px; padding: 11px 14px; min-width: 0; }
+    input:focus { outline: 2px solid var(--brand); outline-offset: 1px; border-color: transparent; }
+    button { font-family: inherit; font-weight: 700; font-size: 15px; background: var(--brand); color: var(--on-brand); border: 0; border-radius: 10px; padding: 11px 20px; cursor: pointer; }
+    button:hover { filter: brightness(1.06); }
+    .fine { margin-top: 22px; font-size: 12.5px; color: var(--faint); }
+    .skeleton { height: 14px; border-radius: 6px; background: var(--surface-2); margin-top: 12px; }
+    .skeleton.w { width: 60%; } .skeleton.n { width: 40%; }
+    footer { padding: 0 0 56px; text-align: center; color: var(--faint); font-size: 13.5px; }
+    footer a { color: var(--brand-text); text-decoration: none; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="/">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 2L3.5 5.5V11C3.5 16.5 7 21 12 22.5C17 21 20.5 16.5 20.5 11V5.5L12 2Z" fill="#19C39A"/>
+          <path d="M8.5 12L11 14.5L15.5 9.5" stroke="#05211B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        ThreatDrill
+      </a>
+      <a class="link" href="/">← Home</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="wrap">
+      <span class="label">Certificate verification</span>
+      <h1>Check a ThreatDrill certificate</h1>
+      <div id="out" aria-live="polite"></div>
+      <p class="fine">ThreatDrill certificates recognize completion of in-app training only. They are not professional certifications and imply no accreditation by, or affiliation with, CompTIA, ISC2, ISACA or any other body.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>© 2026 ThreatDrill · <a href="privacy.html">Privacy Policy</a> · <a href="mailto:support@threatdrill.app">Support</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const ENDPOINT = 'https://xdgffrvdgoncmrbubwvs.supabase.co/functions/v1/verify';
+    const ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhkZ2ZmcnZkZ29uY21yYnVid3ZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI4NDU4OTcsImV4cCI6MjA5ODQyMTg5N30.A-PMBAHh9sYNIetdz3vttx_5AsmxL7gkyVozs0b7UiI';
+    const out = document.getElementById('out');
+    const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>';
+    const X = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>';
+    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+    function form(prefill) {
+      return `<form id="f"><input id="c" name="c" placeholder="10-character code" maxlength="10" autocomplete="off" spellcheck="false" value="${esc(prefill || '')}" aria-label="Certificate code" /><button type="submit">Verify</button></form>`;
+    }
+    function showAsk() {
+      out.innerHTML = `<div class="card"><span class="label">Enter the code</span><p style="margin-top:8px;color:var(--muted)">The code is printed on the certificate in the app, after "Verify at threatdrill.app/verify".</p>${form('')}</div>`;
+      wire();
+    }
+    function showLoading(code) {
+      out.innerHTML = `<div class="card"><span class="label">Checking ${esc(code)}…</span><div class="skeleton w"></div><div class="skeleton n"></div><div class="skeleton"></div></div>`;
+    }
+    function showOk(r) {
+      const d = new Date(r.earnedAt);
+      const date = isNaN(d) ? '' : d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+      out.innerHTML = `<div class="card ok">
+        <span class="status ok">${CHECK} Verified</span>
+        <div class="who">This certifies that</div>
+        <div class="name">${esc(r.recipient || 'Name not set')}</div>
+        <div class="who">has completed the ThreatDrill path</div>
+        <div class="path">${esc(r.title)}</div>
+        <div class="date">Awarded by ThreatDrill${date ? ' · ' + esc(date) : ''}</div>
+        <div class="code">Certificate code <b>${esc(r.code)}</b></div>
+      </div>`;
+    }
+    function showBad(code, reason) {
+      out.innerHTML = `<div class="card bad">
+        <span class="status bad">${X} ${reason === 'error' ? 'Could not check' : 'Not found'}</span>
+        ${reason === 'error'
+          ? '<p>The verification service didn\'t answer. Try again in a moment.</p>'
+          : `<p>No ThreatDrill certificate matches the code <b style="font-family:var(--mono);color:var(--text)">${esc(code)}</b>.</p><p>Check the code on the certificate in the app — it\'s 10 letters and numbers, printed under the award date.</p>`}
+        ${form(code)}
+      </div>`;
+      wire();
+    }
+    function wire() {
+      const f = document.getElementById('f');
+      if (!f) return;
+      f.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const v = document.getElementById('c').value.trim().toUpperCase();
+        if (!v) return;
+        const u = new URL(location.href); u.searchParams.set('c', v); history.replaceState(null, '', u);
+        run(v);
+      });
+    }
+    async function run(code) {
+      code = (code || '').trim().toUpperCase();
+      if (!/^[0-9A-F]{10}$/.test(code)) { showBad(code, 'notfound'); return; }
+      showLoading(code);
+      try {
+        const res = await fetch(ENDPOINT + '?c=' + encodeURIComponent(code), { headers: { apikey: ANON, Authorization: 'Bearer ' + ANON } });
+        if (res.status === 404 || res.status === 400) { showBad(code, 'notfound'); return; }
+        if (!res.ok) { showBad(code, 'error'); return; }
+        const r = await res.json();
+        if (!r.verified) { showBad(code, 'notfound'); return; }
+        showOk({ ...r, code });
+      } catch (e) { showBad(code, 'error'); }
+    }
+    const initial = new URLSearchParams(location.search).get('c');
+    if (initial) run(initial); else showAsk();
+  </script>
+</body>
+</html>
